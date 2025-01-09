@@ -19,14 +19,14 @@ async function warmUp(){
 }
 setInterval(()=>{
   warmUp()
-}, 360000)
+}, 260000)
 //session
 app.use(session({
   secret: "secret",
   resave: false,
   saveUninitialized: false
 }))
-const allowedDomains = ["https://techinword.tech", "https://www.techinword.tech"]
+const allowedDomains = ["https://techinword.tech", "https://www.techinword.tech", "https://329b876b-7368-4d3b-8d30-cad353dd0676-00-224j6kmeq3r7c.sisko.replit.dev"]
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedDomains.includes(origin)) {
