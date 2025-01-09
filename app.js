@@ -13,6 +13,14 @@ app.use(cookie())
 app.use(express.static(path.join(__dirname, "dist")))
 import ConnectToDb from "./middle/connect.js"
 // Enable CORS
+//Wake up
+async function warmUp(){
+  await axios.get("https://api.worldtoday.me")
+}
+setInterval(()=>{
+  warmUp()
+}, 360000)
+//session
 app.use(session({
   secret: "secret",
   resave: false,
