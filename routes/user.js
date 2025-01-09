@@ -10,19 +10,20 @@ router.get("/google/login", passport.authenticate("google", {
 
 // Google callback
 router.get("/google/callback", passport.authenticate("google", {
-  failureRedirect: "https://techinword.tech"
+  failureRedirect: "https://worldtoday.me"
 }), (req, res) => {
   // Assuming req.user.token exists after successful login
   res.cookie("token", req.user.token, {
     maxAge:  2 * 60 * 60 * 60 * 1000,
+    domain: ".worldtoday.me",
   });
-  res.redirect("https://techinword.tech");
+  res.redirect("https://worldtoday.me");
 });
 
 // Logout
 router.get("/logout", verifyToken, (req, res) => {
   res.clearCookie("token");
-  res.redirect("https://techinword.tech");
+  res.redirect("https://worldtoday.me");
 });
 
 // Get user data
