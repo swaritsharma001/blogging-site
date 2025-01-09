@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.cliendId,
       clientSecret: process.env.clientSecret,
-      callbackURL: `https://techinword.tech/api/auth/google/callback`,
+      callbackURL: `https://api.worldtoday.me/api/auth/google/callback`,
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
