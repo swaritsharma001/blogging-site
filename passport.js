@@ -6,7 +6,7 @@ import createToken from "./jwt/jwt.js";
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.clientId,
+      clientID: process.env.cliendId,
       clientSecret: process.env.clientSecret,
       callbackURL: `https://api.worldtoday.me/api/auth/google/callback`,
     },
