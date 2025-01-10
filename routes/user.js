@@ -19,12 +19,12 @@ router.get("/google/callback", passport.authenticate("google", {
   }
 
   res.cookie("token", req.user.token, {
-    httpOnly: true,
+    httpOnly: false,
     secure: process.env.NODE_ENV === "production",
     maxAge: 2 * 60 * 60 * 1000, // 2 hours
-    domain: ".worldtoday.me",
+    //domain: ".worldtoday.me",
   });
-  res.redirect("https://worldtoday.me");
+  res.redirect("https://329b876b-7368-4d3b-8d30-cad353dd0676-00-224j6kmeq3r7c.sisko.replit.dev");
 });
 
 // Logout
