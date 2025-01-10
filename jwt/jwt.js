@@ -26,6 +26,7 @@ export async function verifyToken(req, res, next){
     // Find user associated with token
     const user = await User.findById(decoded._id);
     if (!user) return res.status(401).json({ message: "User not found" });
+    if(user?.token !== token) return res.status(401).json({message: "Please Login again"})
 
     // Attach user data to request object
     req.user = user;
