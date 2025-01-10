@@ -16,7 +16,7 @@ export default async function Createtoken(user){
 
 // Middleware to verify token
 export async function verifyToken(req, res, next){
-  const token = req.cookies?.token;
+  const token = req.cookies?.token || req.headers.authorization
   if (!token) return res.status(401).json({ message: "Please login first" });
 
   try {
