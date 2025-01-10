@@ -6,19 +6,19 @@ import createToken from "./jwt/jwt.js";
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.cliendId,
+      clientID: process.env.clientId,
       clientSecret: process.env.clientSecret,
       callbackURL: `https://api.worldtoday.me/api/auth/google/callback`,
     },
-    async function (accessToken, refreshToken, profile, done) {
+    async (accessToken, refreshToken, profile, done) => {
       try {
-        // Find user by email
         let user = await User.findOne({ email: profile.emails[0].value });
 
         if (user) {
-          // Generate token and attach to user object
+          // Generate a new token
           const token = await createToken(user);
-          user.token = token;
+          user.token = token; // Replace old token or set new one
+          await user.save(); // Save the updated user with the new token
           return done(null, user);
         }
 
@@ -31,9 +31,10 @@ passport.use(
           avatar: profile.photos[0].value,
         });
 
-        // Generate token for the new user
+        // Generate a token for the new user
         const token = await createToken(newUser);
         newUser.token = token;
+        await newUser.save(); // Save the new user with the token
         return done(null, newUser);
       } catch (error) {
         return done(error, null);
@@ -42,15 +43,13 @@ passport.use(
   )
 );
 
-// Serialize user into session
 passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-// Deserialize user from session
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-
-export default passport
+export default passport;
+          
