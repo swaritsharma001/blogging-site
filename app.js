@@ -26,7 +26,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-const allowedDomains = ["https://techinword.tech", "https://www.techinword.tech", "https://329b876b-7368-4d3b-8d30-cad353dd0676-00-224j6kmeq3r7c.sisko.replit.dev"]
+const allowedDomains = ["https://techinword.tech", "https://www.techinword.tech", "https://380d8e6b-3d5d-4fae-936f-a8fc5ce44e0c-00-1o7twql8wagp6.pike.replit.dev"]
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedDomains.includes(origin)) {
